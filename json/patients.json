@@ -1,0 +1,19 @@
+[{
+	"nom": "Térieur",
+	"prenom": "Alain",
+	"login": "a.terieur1",
+	"mdp": "password",
+	"tel": "0122334455"
+}, {
+	"nom": "Lopement",
+	"prenom": "Dave",
+	"login": "d.lopement",
+	"mdp": "password",
+	"tel": "0122334455"
+}, {
+	"nom": "Jacob",
+	"prenom": "Rami",
+	"login": "r.jacob",
+	"mdp": "password",
+	"tel": "0857543388"
+}]

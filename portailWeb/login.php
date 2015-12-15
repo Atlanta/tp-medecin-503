@@ -16,7 +16,7 @@
 	    <div class="row">
 	      <div class="one-half column" style="margin-top: 25%">
           <h4>Login</h4>
-	        <form action="/traitement.php:8080" method="POST">
+	        <form action="http://localhost:8080/traitement.php" method="POST">
             <label>Login :</label>
             <input type="text" name="login">
             <label>Pass : </label>

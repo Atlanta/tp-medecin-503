@@ -6,7 +6,9 @@ import java.io.UnsupportedEncodingException;
 import java.io.OutputStream;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.URI;
+import java.net.URL;
 import java.net.URLDecoder;
 
 /**
@@ -17,7 +19,7 @@ import java.net.URLDecoder;
 class AccueilHandler implements HttpHandler {
 
     public void handle(HttpExchange t) {
-        String reponse = "<h1>Bienvenue sur la page d'accueil</h1>";
+        String reponse = "";
 
         // Récupération des données
         URI requestedUri = t.getRequestURI();
@@ -32,32 +34,12 @@ class AccueilHandler implements HttpHandler {
             System.exit(-1);
         }
 
-        // Récupération des données en POST
-        try {
-            query = br.readLine();
-        } catch(IOException e) {
-            System.err.println("Erreur lors de la lecture d'une ligne " + e);
-            System.exit(-1);
-        }
-
-        // Affichage des données
-        reponse += "<p>Données en POST : ";
-        if(query == null)
-            reponse += "<b>Aucune</b></p>";
-        else {
-            try {
-                query = URLDecoder.decode(query, "UTF-8");
-            } catch(UnsupportedEncodingException e) {
-                query = "";
-            }
-            reponse += "<b>" + query + "</b></p>";
-        }
-
         // Envoi de l'en-tête Http
         try {
             Headers h = t.getResponseHeaders();
+            h.set("Location", "http://localhost/index.php");
             h.set("Content-Type", "text/html; charset=utf-8");
-            t.sendResponseHeaders(200, reponse.getBytes().length);
+            t.sendResponseHeaders(302, reponse.getBytes().length);
         } catch(IOException e) {
             System.err.println("Erreur lors de l'envoi de l'en-tête : " + e);
             System.exit(-1);

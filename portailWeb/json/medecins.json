@@ -1,4 +1,5 @@
 [{
+<<<<<<< HEAD
 	"ref": "sun.rmi.server.UnicastServerRef@85ede7b",
 	"id": "1",
 	"specialisation": "généraliste",
@@ -14,4 +15,23 @@
 	"login": "house",
 	"nom": "Laurie",
 	"prenom": "Hugh"
+=======
+	"nom": "Morant",
+	"prenom": "Jean",
+	"login": "j.morant",
+	"mdp": "password",
+	"specialite": "gen"
+}, {
+	"nom": "Térieur",
+	"prenom": "Alex",
+	"login": "a.terieur",
+	"mdp": "password",
+	"specialite": "ped"
+}, {
+	"nom": "Zeau",
+	"prenom": "Ray",
+	"login": "r.zeau",
+	"mdp": "password",
+	"specialite": "oph"
+>>>>>>> refs/remotes/Atlanta/master
 }]

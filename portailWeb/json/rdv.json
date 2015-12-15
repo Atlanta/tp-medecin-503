@@ -1,0 +1,21 @@
+[{
+	"medecin": "j.morant",
+	"patient": "d.lopement",
+	"date": {
+		"jour": "12",
+		"mois": "05",
+		"annee": "2016",
+		"heure": "14",
+		"minutes": "45"
+	}
+}, {
+	"medecin": "r.zeau",
+	"patient": "r.jacob",
+	"date": {
+		"jour": "25",
+		"mois": "08",
+		"annee": "2016",
+		"heure": "16",
+		"minutes": "15"
+	}
+}]

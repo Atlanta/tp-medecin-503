@@ -1,0 +1,1 @@
+[{"ref":"sun.rmi.server.UnicastServerRef@77459877","numeroTel":"0102030405","mdp":"bar","id":0,"login":"foo","nom":"Manson","prenom":"Charles"},{"ref":"sun.rmi.server.UnicastServerRef@5b2133b1","numeroTel":"0102030405","mdp":"mdp","id":1,"login":"log","nom":"Marc","prenom":"Machin"}]

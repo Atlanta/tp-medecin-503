@@ -1,0 +1,17 @@
+[{
+	"ref": "sun.rmi.server.UnicastServerRef@85ede7b",
+	"id": "1",
+	"specialisation": "généraliste",
+	"mdp": "bob",
+	"login": "ppb",
+	"nom": "Pulwermacher-Blanchart",
+	"prenom": "Philippe"
+}, {
+	"ref": "sun.rmi.server.UnicastServerRef@5674cd4d",
+	"id": "2",
+	"specialisation": "mad",
+	"mdp": "tv",
+	"login": "house",
+	"nom": "Laurie",
+	"prenom": "Hugh"
+}]

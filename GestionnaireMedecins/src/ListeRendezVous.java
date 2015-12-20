@@ -5,35 +5,36 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
- * ListeClient
- * Contient la liste des clients enregistrés dans le RMI
+ * ListeRendezVous
+ * Contient la liste des rendez-vous enregistrés dans le RMI
  * @author Julien Hubert
  * @version 17/12/2015
  */
-public class ListeClients extends UnicastRemoteObject implements IListeClients, Remote {
-    private ArrayList<String> listeClients;
+public class ListeRendezVous extends UnicastRemoteObject implements IListeRendezVous, Remote {
+    private ArrayList<String> listeRendezVous;
 
-    public ListeClients() throws RemoteException {
-        this.listeClients = new ArrayList<String>();
+    public ListeRendezVous() throws RemoteException {
+        this.listeRendezVous = new ArrayList<String>();
     }
 
-    public ArrayList<String> getListeClients() throws RemoteException {
-        return listeClients;
+    public ArrayList<String> getListeRendezVous() throws RemoteException {
+        return listeRendezVous;
     }
 
-    public void setListeClients(ArrayList<String> listeMedecins) throws RemoteException {
-        this.listeClients = listeMedecins;
+    public void setListeRendezVous(ArrayList<String> listeRendezVous) throws RemoteException {
+        this.listeRendezVous = listeRendezVous;
     }
 
     /**
-     * Ajoute le client dans le RMI
+     * Ajoute le rendez-vous dans le RMI
      */
-    public void ajouter(ClientDistant clientDistant) throws RemoteException {
+    public void ajouter(RendezVousDistant rendezVousDistant) throws RemoteException {
         try {
-            Naming.rebind("Client" + clientDistant.getId(), clientDistant);
-            listeClients.add("Client" + clientDistant.getId());
+            Naming.rebind("RendezVous" + rendezVousDistant.getId(), rendezVousDistant);
+            listeRendezVous.add("RendezVous" + rendezVousDistant.getId());
         } catch (RemoteException e) {
             System.err.println("Erreur lors de l'enregistrement : " + e);
         } catch (MalformedURLException e) {
@@ -42,12 +43,12 @@ public class ListeClients extends UnicastRemoteObject implements IListeClients, 
     }
 
     /**
-     * Enregistre le client dans le fichier JSON puis invoque ajouter()
+     * Enregistre le rendez-vous dans le fichier JSON puis invoque ajouter()
      */
-    public void enregistrer(int id, String prenom, String nom, String login, String password, int numeroTelephone) throws RemoteException {
+    public void enregistrer(int id, int idMedecin, int idClient, Calendar date) throws RemoteException {
         try {
-            ClientDistant clientDistant = new ClientDistant(id, prenom, nom, login, password, numeroTelephone);
-            File file = new File("clients.json");
+            RendezVousDistant rendezVousDistant = new RendezVousDistant(id, idMedecin, idClient, date);
+            File file = new File("rdv.json");
             String fileContent = "";
             String line;
 
@@ -56,7 +57,7 @@ public class ListeClients extends UnicastRemoteObject implements IListeClients, 
 
             while ((line = bufferedReader.readLine()) != null) {
                 if (line.contains("}]"))
-                    line = "}, " + clientDistant.toJSONString() + "]";
+                    line = "}, " + rendezVousDistant.toJSONString() + "]";
                 else
                     line += "\n";
                 fileContent += line;
@@ -73,7 +74,7 @@ public class ListeClients extends UnicastRemoteObject implements IListeClients, 
             fileWriter.close();
             fileReader.close();
 
-            this.ajouter(clientDistant);
+            this.ajouter(rendezVousDistant);
         } catch (IOException e) {
             System.out.println("Erreur lors de l'enregistrement dans le fichier : " + e);
         }

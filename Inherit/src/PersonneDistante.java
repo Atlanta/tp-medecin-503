@@ -1,32 +1,19 @@
-/**
- * Created by Atlanta on 16/12/15.
- */
-
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
-public class PersonneDistante extends UnicastRemoteObject implements IPersonneDistante, Remote {
-
-    //region Attributs
-
+/**
+ * PersonneDistante
+ * Classe abstraite, base de ClientDistant et MédecinDistant
+ * @author Julien Hubert
+ * @version 15/12/2015
+ */
+public abstract class PersonneDistante extends UnicastRemoteObject implements IPersonneDistante, Remote {
     private int id;
     private String nom;
     private String prenom;
     private String login;
     private String password;
-
-    //endregion
-
-    //region Constructeurs
-
-    public PersonneDistante() throws RemoteException {
-        id = 0;
-        nom = "Doe";
-        prenom = "John";
-        login = "johndoe";
-        password = "password";
-    }
 
     public PersonneDistante(int id, String prenom, String nom, String login, String password) throws RemoteException {
         this.id = id;
@@ -35,8 +22,6 @@ public class PersonneDistante extends UnicastRemoteObject implements IPersonneDi
         this.login = login;
         this.password = password;
     }
-
-    //endregion
 
     //region Getters/Setters
 

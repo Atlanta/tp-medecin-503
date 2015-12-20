@@ -4,18 +4,16 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.Calendar;
 
 /**
- * Created by Julien on 19/12/2015.
+ * RendezVousDistant
+ * Correspond à un rendez-vous, implemente l'interface RMI
+ * @author Julien Hubert
+ * @version 17/12/2015
  */
 public class RendezVousDistant extends UnicastRemoteObject implements IRendezVousDistant, Remote {
-
-    //region Attributs
-
     private int id;
     private int idMedecin;
     private int idClient;
     private Calendar date;
-
-    //endregion
 
     public RendezVousDistant(int id, int idMedecin, int idClient, Calendar date) throws RemoteException {
         this.id = id;
@@ -63,14 +61,14 @@ public class RendezVousDistant extends UnicastRemoteObject implements IRendezVou
     public String toJSONString() throws RemoteException {
         return "{\n" +
                 "   \"id\": " + this.getId() + ",\n" +
-                "   \"idMedecin\": \"" + this.getIdMedecin() + "\",\n" +
-                "   \"idClient\": \"" + this.getIdClient() + "\",\n" +
+                "   \"idMedecin\": " + this.getIdMedecin() + ",\n" +
+                "   \"idClient\": " + this.getIdClient() + ",\n" +
                 "   \"date\": {\n" +
-                "       \"annee\": \"" + this.getDate().get(Calendar.YEAR) + "\",\n" +
-                "       \"mois\": \"" + this.getDate().get(Calendar.MONTH) + "\",\n" +
-                "       \"jour\": \"" + this.getDate().get(Calendar.DAY_OF_MONTH) + "\",\n" +
-                "       \"heure\": \"" + this.getDate().get(Calendar.HOUR) + "\",\n" +
-                "       \"minutes\": \"" + this.getDate().get(Calendar.MINUTE) + "\"\n" +
+                "       \"annee\": " + this.getDate().get(Calendar.YEAR) + ",\n" +
+                "       \"mois\": " + this.getDate().get(Calendar.MONTH) + ",\n" +
+                "       \"jour\": " + this.getDate().get(Calendar.DAY_OF_MONTH) + ",\n" +
+                "       \"heure\": " + this.getDate().get(Calendar.HOUR_OF_DAY) + ",\n" +
+                "       \"minutes\": " + this.getDate().get(Calendar.MINUTE) + "\n" +
                 "   }\n" +
                 "}";
     }

@@ -4,18 +4,17 @@ import com.sun.net.httpserver.HttpHandler;
 
 import java.io.*;
 import java.net.MalformedURLException;
-import java.net.URI;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.StringTokenizer;
 
 /**
- * Classe correspondant au handler sur le contexte 'index.html'.
- * @author Cyril Rabat
- * @version 2015/06/25
+ * LoginHandler
+ * Gère le login en Ajax avec le back-office
+ * @author Julien Hubert
+ * @version 17/12/2015
  */
 class LoginHandler implements HttpHandler {
 
@@ -23,6 +22,8 @@ class LoginHandler implements HttpHandler {
         String reponse = "";
         String requete = "";
         boolean isLoginCorrect = false;
+        boolean isPasswordCorrect = false;
+        Hashtable<String, String> arguments = new Hashtable<String, String>();
 
         // Utilisation d'un flux pour lire les données du message Http
         BufferedReader bufferedReader = null;
@@ -32,7 +33,6 @@ class LoginHandler implements HttpHandler {
             System.err.println("Erreur lors de la récupération du flux " + e);
         }
 
-        Hashtable<String, String> arguments = new Hashtable<String, String>();
         // Récupération des données en POST
         try {
             if (bufferedReader != null) {
@@ -45,39 +45,34 @@ class LoginHandler implements HttpHandler {
 
         Headers headers = httpExchange.getResponseHeaders();
         headers.set("Access-Control-Allow-Origin", "*");
-        headers.set("Content-Type", "application/x-www-form-urlencoded");
 
         try {
-            if (!arguments.isEmpty()) {
                 IListeClients listeClients = (IListeClients) Naming.lookup("rmi://localhost/ListeClients");
                 for(int i = 0; i < listeClients.getListeClients().size(); i++) {
                     IClientDistant clientDistant = (IClientDistant) Naming.lookup("rmi://localhost/" + listeClients.getListeClients().get(i));
 
                     if(clientDistant.getLogin().equals(arguments.get("login"))) {
+                        isLoginCorrect = true;
                         if (arguments.get("password").equals(clientDistant.getPassword())) {
-                            headers.set("Location", "http://localhost/gestion.php");
+                            isPasswordCorrect = true;
                             reponse += ("idClient=" + clientDistant.getId());
                         }
                     }
                 }
-                if(reponse.equals("")) {
-                    headers.set("Location", "http://localhost/");
+                if(isLoginCorrect && !isPasswordCorrect) {
                     reponse += "false+Password";
                 }
-            }
-            else
-                headers.set("Location", "http://localhost/");
+                else if (!isLoginCorrect){
+                    reponse += "false+User";
+                }
         } catch (NotBoundException e) {
             System.err.println("Utilisateur inexistant : " + e);
-            headers.set("Location", "http://localhost/");
             reponse += "false+User";
         } catch (MalformedURLException e) {
             e.printStackTrace();
-            headers.set("Location", "http://localhost/");
             reponse += "false+RequestError";
         } catch (RemoteException e) {
             e.printStackTrace();
-            headers.set("Location", "http://localhost/");
             reponse += "false+InternalError";
         }
 
@@ -98,6 +93,11 @@ class LoginHandler implements HttpHandler {
         }
     }
 
+    /**
+     * Fonction qui récupère les arguments POST et les rentre dans un tableau
+     * @param URL L'URL qui contient les données POST
+     * @return Tableau associatif des paramètres
+     */
     public static Hashtable<String, String> extraireArguments(String URL) {
         Hashtable<String, String> argumentsList = new Hashtable<String, String>();
         StringTokenizer stringTokenizer = new StringTokenizer(URL, "&");

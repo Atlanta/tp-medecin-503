@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/BackOffice/BackOffice.iml" filepath="$PROJECT_DIR$/BackOffice/BackOffice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GestionnaireClients/GestionnaireClients.iml" filepath="$PROJECT_DIR$/GestionnaireClients/GestionnaireClients.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GestionnaireMedecins/GestionnaireMedecins.iml" filepath="$PROJECT_DIR$/GestionnaireMedecins/GestionnaireMedecins.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Inherit/Inherit.iml" filepath="$PROJECT_DIR$/Inherit/Inherit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/gestionRendezVous.iml" filepath="$PROJECT_DIR$/.idea/gestionRendezVous.iml" />
+    </modules>
+  </component>
+</project>

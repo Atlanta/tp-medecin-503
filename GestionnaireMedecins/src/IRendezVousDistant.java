@@ -16,5 +16,4 @@ public interface IRendezVousDistant extends Remote {
     public Calendar getDate() throws RemoteException;
     public void setDate(Calendar date) throws RemoteException;
     public String toJSONString() throws RemoteException;
-
 }

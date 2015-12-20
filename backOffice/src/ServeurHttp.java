@@ -2,11 +2,13 @@ import com.sun.net.httpserver.HttpServer;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.net.MalformedURLException;
-import java.rmi.Naming;
-import java.rmi.NotBoundException;
-import java.rmi.RemoteException;
 
+/**
+ * Serveur back-office
+ * Gère la communication entre le site web et le RMI
+ * @author Julien Hubert
+ * @version 17/12/2015
+ */
 public class ServeurHttp {
 
     public static void main(String[] args) {
@@ -23,7 +25,6 @@ public class ServeurHttp {
         serveur.setExecutor(null);
         serveur.start();
 
-        System.out.println("Serveur démarré. Pressez CRTL+C pour arrêter.");
+        System.out.println("Serveur démarré.");
     }
-
 }

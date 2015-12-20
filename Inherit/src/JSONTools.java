@@ -6,7 +6,10 @@ import java.io.FileReader;
 import java.io.IOException;
 
 /**
- * Created by Julien on 19/12/2015.
+ * JSONTools
+ * Implemente les méthodes utiles pour traiter les fichiers JSON
+ * @author Julien Hubert
+ * @version 16/12/2015
  */
 public class JSONTools {
     public static JSONArray chargerJSON(String jsonFile) {

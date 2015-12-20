@@ -1,5 +1,5 @@
 /**
- * Created by Atlanta on 16/12/15.
+ * Créé par Julien le 16/12/15.
  */
 import java.rmi.Remote;
 import java.rmi.RemoteException;

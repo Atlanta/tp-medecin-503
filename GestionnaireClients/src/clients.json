@@ -1,0 +1,15 @@
+[{
+  "id": 1,
+  "nom": "Anic-antic",
+  "prenom": "Raphaël",
+  "login": "anicanticraphael",
+  "password": "1234",
+  "numeroTelephone": 148992225
+}, {
+  "id" : 2,
+  "nom": "Thuet",
+  "prenom": "Clément",
+  "login": "clementthuet",
+  "password": "1234",
+  "numeroTelephone": 148992225
+}]

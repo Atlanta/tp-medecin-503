@@ -1,15 +1,9 @@
+import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-import com.sun.net.httpserver.Headers;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.io.OutputStream;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
+
+import java.io.*;
 import java.net.URI;
-import java.net.URL;
-import java.net.URLDecoder;
 
 /**
  * Classe correspondant au handler sur le contexte 'index.html'.
@@ -37,8 +31,7 @@ class AccueilHandler implements HttpHandler {
         // Envoi de l'en-tête Http
         try {
             Headers h = t.getResponseHeaders();
-            h.set("Location", "http://localhost/index.php");
-            h.set("Content-Type", "text/html; charset=utf-8");
+            h.set("Location", "http://localhost/gestion.php");
             t.sendResponseHeaders(302, reponse.getBytes().length);
         } catch(IOException e) {
             System.err.println("Erreur lors de l'envoi de l'en-tête : " + e);

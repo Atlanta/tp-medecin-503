@@ -1,0 +1,23 @@
+[{
+  "id": 1,
+  "idMedecin": 1,
+  "idClient": 2,
+  "date": {
+    "annee": 2015,
+    "mois": 5,
+    "jour": 12,
+    "heure": 15,
+    "minutes": 45
+  }
+}, {
+  "id": 2,
+  "idMedecin": 2,
+  "idClient": 1,
+  "date": {
+    "annee": 2015,
+    "mois": 12,
+    "jour": 5,
+    "heure": 15,
+    "minutes": 0
+  }
+}]

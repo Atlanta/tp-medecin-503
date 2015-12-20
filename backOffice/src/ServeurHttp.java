@@ -1,27 +1,25 @@
-import java.io.IOException;
 import com.sun.net.httpserver.HttpServer;
-import com.sun.net.httpserver.HttpContext;
-import java.net.InetSocketAddress;
 
-/**
- * Classe correspondant à un serveur Http simple.
- * Le serveur écoute sur le port 8080 sur le contexte 'index.html'.
- * Le résultat est une simple page qui affiche les données envoyées en POST
- * @author Cyril Rabat
- * @version 2015/11/18
- */
+import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+
 public class ServeurHttp {
 
     public static void main(String[] args) {
         HttpServer serveur = null;
         try {
-            serveur = HttpServer.create(new InetSocketAddress(8080), 0);
+            serveur = HttpServer.create(new InetSocketAddress(8181), 0);
         } catch(IOException e) {
             System.err.println("Erreur lors de la création du serveur " + e);
             System.exit(-1);
         }
 
-        serveur.createContext("/traitement.php", new AccueilHandler());
+        serveur.createContext("/login.php", new LoginHandler());
+        serveur.createContext("/ajax.php", new AjaxHandler());
         serveur.setExecutor(null);
         serveur.start();
 
